@@ -1,0 +1,111 @@
+body {
+  background: linear-gradient(180deg, #c1e1ff 0%, #0085ff 100%); /*漸層*/
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  background: white;
+  width: 400px;
+  margin: 100px auto; /*置中*/
+  padding: 10px 100px;
+  border-radius: 30px;
+}
+
+.title {
+  position: relative;
+  left: -20px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.inner-wrapper {
+/*   background: pink;  */
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+}
+
+.input-wrapper {
+  border-radius: 20px;
+  background: #eeeff0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 424px;
+}
+
+.input-wrapper input {
+  background: transparent; /*透明*/
+  border: 0px;
+  flex: 1; /*佔據整個空間*/
+  outline: none; /*沒有邊框*/
+  padding: 10px 20px;
+}
+
+.input-wrapper button {
+  background: #359aff;
+  border: 0px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 13px;
+  border-radius: 20px;
+  cursor: pointer; /*懸浮箭頭圖示*/
+}
+
+.list {
+  list-style: none; /*刪除點*/
+  padding: 0px;
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+.list li {
+  vertical-align: middle; /*為與圖示對齊*/
+  font-weight: 400;
+  padding: 5px;
+  position: relative;
+}
+
+/*打勾時*/
+.list li.checked {
+  text-decoration: line-through; /*線劃掉*/
+}
+
+.list li::before {
+  content: ""; /*添加文字*/
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("https://i.postimg.cc/xdQvK5Xw/2024-05-18-162103.jpg");
+  background-size: contain; /*圖示呈現方式*/
+  background-repeat: no-repeat;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.list li.checked::before {
+  background-image: url("https://i.postimg.cc/g0bDgdTB/2024-05-18-160842.jpg");
+}
+
+.delete {
+  background-image: url("https://i.postimg.cc/HLStd5LF/2024-05-18-162242.jpg");
+  border-radius: 25px;
+  padding: 5px;
+  background-position: center;
+  object-fit: cover; /*圖示呈現方式*/
+  position: absolute;
+  background-repeat: no-repeat;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-size: cover; /*顯示X圖示*/
+}
+
+.delete:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
