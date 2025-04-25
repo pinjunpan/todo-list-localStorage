@@ -9,7 +9,7 @@ const STATE_KEY = "todo-list";
 /*讀取localStorage的資料*/
 function loadState() {
   const listState = localStorage.getItem(STATE_KEY); /*字串*/
-  
+
   /*把字串轉成物件*/
   if (listState !== null) {
     return JSON.parse(listState);
@@ -26,7 +26,7 @@ function saveState(list) {
 function initList() {
   /*load list*/
   listState = loadState(); /*把存在localStorage的狀態讀出來*/
-  
+
   /*render list*/
   const ul = document.getElementById("list");
 
@@ -55,7 +55,7 @@ function addItem() {
   const ul = document.getElementById("list");
   const input = document.getElementById("input");
   const text = input.value; /*輸入的值*/
-  
+
   if (text === "") {
     alert("請輸入內容");
     return; /*否則function會繼續往下跑*/
@@ -89,7 +89,7 @@ function checkItem() {
   const item = this;
   const parent = item.parentNode;
   /*知道index才能打勾*/
-  const idx = Array.from(parent.querySelectorAll(".item")).indexOf(item); 
+  const idx = Array.from(parent.querySelectorAll(".item")).indexOf(item);
   /*教材使用Array.from(parent.childNodes)：使用Array.from把childNodes(iterable：可以迭代的東西)轉成Array -> 有bug*/
   /*使用indexof找出item的index(索引值)*/
 
@@ -102,7 +102,7 @@ function checkItem() {
 function deleteItem(e) {
   const item = this.parentNode; /*this代表X按鈕，parentNode代表li那層*/
   const parent = item.parentNode; /*代表ul那層*/
-  const idx = Array.from(parent.childNodes).indexOf(item);
+  const idx = Array.from(parent.querySelectorAll(".item")).indexOf(item);
 
   listState = listState.filter((_, i) => i !== idx); /*把index以外的留著，過濾掉等於index的*/
   parent.removeChild(item);
