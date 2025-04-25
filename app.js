@@ -22,37 +22,46 @@ function saveState(list) {
   localStorage.setItem(STATE_KEY, JSON.stringify(list));
 }
 
+function createListItem (item) {
+  const li = document.createElement("li");
+  li.classList.add("item");
+  li.innerText = item.text; /*輸入的值*/
+
+  if (item.checked) {
+      li.classList.add("checked");
+  };
+
+  li.onclick = checkItem; /*點擊後打勾*/
+
+  const deleteButton = document.createElement("span");
+  deleteButton.classList.add("delete");
+  deleteButton.onclick = deleteItem;
+  li.appendChild(deleteButton);
+  
+  return li;
+}
+
+function renderList() {
+  const ul = document.getElementById("list");
+  ul.innerHTML = "";
+
+  listState.forEach(item => {
+    const li = createListItem(item);
+    ul.appendChild(li);
+  });
+}
+
 /*顯示list到畫面*/
 function initList() {
   /*load list*/
   listState = loadState(); /*把存在localStorage的狀態讀出來*/
 
   /*render list*/
-  const ul = document.getElementById("list");
-
-  for (const item of listState) {
-    /*把items寫入html*/
-    const li = document.createElement("li");
-    li.innerText = item.text;
-
-    const deleteButton = document.createElement("span");
-    deleteButton.classList.add("delete");
-    deleteButton.onclick = deleteItem;
-    li.appendChild(deleteButton);
-
-    li.classList.add("item"); /*才會有CSS效果*/
-    if (item.checked) {
-      li.classList.add("checked");
-    }
-    li.onclick = checkItem;
-
-    ul.appendChild(li);
-  }
+  renderList()
 }
 
 /*取得外層的<ul>，插入建立的<li>*/
 function addItem() {
-  const ul = document.getElementById("list");
   const input = document.getElementById("input");
   const text = input.value; /*輸入的值*/
 
@@ -61,19 +70,6 @@ function addItem() {
     return; /*否則function會繼續往下跑*/
   }
 
-  /*設置點擊Add事件*/
-  const newItem = document.createElement("li");
-  newItem.classList.add("item");
-  newItem.innerText = text; /*newItem的值=輸入的值*/
-
-  newItem.onclick = checkItem; /*點擊後打勾*/
-
-  const deleteButton = document.createElement("span");
-  deleteButton.classList.add("delete");
-  deleteButton.onclick = deleteItem;
-
-  newItem.appendChild(deleteButton);
-
   listState.push({
     text,
     checked: false
@@ -81,7 +77,8 @@ function addItem() {
   saveState(listState); /*listState跟localStorage的值同步*/
 
   input.value = ""; /*輸入的值清空*/
-  ul.appendChild(newItem);
+
+  renderList()
 }
 
 function checkItem() {
