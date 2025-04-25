@@ -110,10 +110,21 @@ function deleteItem(e) {
   e.stopPropagation(); /*避免上層的onclick也被觸發*/
 }
 
+function deleteAllItem(){
+  if (confirm("Delete all items?")) {
+    listState = []
+    saveState(listState)
+    document.getElementById("list").innerHTML = ""
+  }
+}
+
 initList(); /*要在網頁讀取完呼叫initList，才會執行*/
 
 const addButton = document.getElementById("add-button");
 addButton.addEventListener("click", addItem); /*點擊觸發function*/
+
+const deleteAllButton = document.getElementById("delete-all")
+deleteAllButton.addEventListener("click", deleteAllItem)
 
 /*form預設行為：繳交之後會刷新頁面*/
 const form = document.getElementById("input-wrapper");

@@ -54,6 +54,18 @@ body {
   cursor: pointer; /*懸浮箭頭圖示*/
 }
 
+.delete-all {
+  background: rgb(35, 82, 193);
+  border: 0px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 13px;
+  margin-top: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .list {
   list-style: none; /*刪除點*/
   padding: 0px;
